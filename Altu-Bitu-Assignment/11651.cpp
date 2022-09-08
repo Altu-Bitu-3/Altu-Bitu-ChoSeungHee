@@ -1,38 +1,35 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <utility>  //pair 사용을 위한 헤더
 
 using namespace std;
 
 //1. 점의 개수 N
 //2~. 점들의 좌표 
 
-struct dot {
-	int x;
-	int y;
-};
 
-bool cmp(const dot& a, const dot& b) {
-	if (a.y == b.y) {
-		return a.x < b.x;
+bool cmp(const pair<int,int>& a, const  pair<int, int>& b) {
+	if (a.second == b.second) {
+		return a.first < b.first;
 	}
-	return a.y < b.y;
+	return a.second < b.second;
 }
 
 int main() {
 	int n;
 	cin >> n;  //점개수 입력
 
-	vector<dot> arr(n);  //dot 배열 생성
+	vector<pair<int,int>> arr(n);  //좌표 생성
 
 	for (int i = 0; i < n; i++) {
-		cin >> arr[i].x >> arr[i].y;
+		cin >> arr[i].first >> arr[i].second;
 	}
 
 	sort(arr.begin(), arr.end(), cmp);
 
 	for (int i = 0; i < n; i++) {
-		cout << arr[i].x <<" "<< arr[i].y << "\n";
+		cout << arr[i].first <<" "<< arr[i].second << "\n";
 	}
 
 	return 0;
