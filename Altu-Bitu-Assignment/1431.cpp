@@ -13,7 +13,7 @@ int cal(const string& num) {
 	int result = 0;
 
 	for (int i = 0; i < num.length(); i++) {
-		if (num[i] >= '0' && num[i] <= '9') {
+		if (isdigit(num[i])) {
 			result += num[i]-'0';  //아스키코드 숫자의 차이로 정수 변환
 		}
 	}
@@ -23,19 +23,15 @@ int cal(const string& num) {
 
 
 bool cmp(const string& a, const string& b) {
-
-	if (a.length() == b.length()) {
-		int a_cal = cal(a);
-		int b_cal = cal(b);
-
-		if (a_cal == b_cal) {
-			return a < b;
-		}
-
+	int a_cal = cal(a);
+	int b_cal = cal(b);
+	if (a.length() != b.length()) {
+		return a.length() < b.length();
+	}
+	if (a_cal != b_cal) {
 		return a_cal < b_cal;
 	}
-	return a.length() < b.length();
-	
+	return a < b;
 }
 
 int main() {
