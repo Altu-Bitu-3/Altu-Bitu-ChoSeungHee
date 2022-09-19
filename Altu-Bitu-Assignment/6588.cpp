@@ -24,7 +24,7 @@ int main() {
 	cout.tie(NULL);
 
 	int n, a = 0, b = 0;
-	int max = 100000;
+	int max = 1000000;
 	vector<bool> is_prime(max + 1, true);
 	isPrime(max, is_prime);
 
