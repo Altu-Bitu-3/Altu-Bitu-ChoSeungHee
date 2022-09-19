@@ -5,12 +5,12 @@
 
 using namespace std;
 
-// »ê¼ú Æò±Õ : N°³ÀÇ ¼öµéÀÇ ÇÕ / N
-// Áß¾Ó°ª : Áõ°¡ÇÏ´Â ¼øÀ¸·Î ¼ö¸¦ ³ª¿­ÇÑ µÚ, Áß¾Ó¿¡ À§Ä¡ÇÏ´Â °ª
-// ÃÖºó°ª : °¡Àå ¸¹Àº ¼ö
-// ¹üÀ§ : ÃÖ´ñ°ª°ú ÃÖ¼Ú°ªÀÇ Â÷
+// ì‚°ìˆ  í‰ê·  : Nê°œì˜ ìˆ˜ë“¤ì˜ í•© / N
+// ì¤‘ì•™ê°’ : ì¦ê°€í•˜ëŠ” ìˆœìœ¼ë¡œ ìˆ˜ë¥¼ ë‚˜ì—´í•œ ë’¤, ì¤‘ì•™ì— ìœ„ì¹˜í•˜ëŠ” ê°’
+// ìµœë¹ˆê°’ : ê°€ì¥ ë§ì€ ìˆ˜
+// ë²”ìœ„ : ìµœëŒ“ê°’ê³¼ ìµœì†Ÿê°’ì˜ ì°¨
 
-// ¼öÀÇ °³¼ö(N)´Â È¦¼ö
+// ìˆ˜ì˜ ê°œìˆ˜(N)ëŠ” í™€ìˆ˜
 
 int calMean(vector<int>& v) {
 	double avg = 0;
@@ -19,32 +19,32 @@ int calMean(vector<int>& v) {
 		avg += v[i];
 	}
 	avg /= size;
-	int res = round(avg);		// ¼Ò¼öÁ¡ ¹İ¿Ã¸²
+	int res = round(avg);		// ì†Œìˆ˜ì  ë°˜ì˜¬ë¦¼
 
 	return res;
 }
 
 int calMid(vector<int>& v) {
 	sort(v.begin(), v.end());
-	int mid = v[v.size() / 2];  //¹«Á¶°Ç È¦¼ö°³¼öÀÌ±â ¶§¹®¿¡
+	int mid = v[v.size() / 2];  //ë¬´ì¡°ê±´ í™€ìˆ˜ê°œìˆ˜ì´ê¸° ë•Œë¬¸ì—
 
 	return mid;
 }
 
 int calMode(vector<int>& v) {
-	// Á¤¼ö´Â -4000~4000
+	// ì •ìˆ˜ëŠ” -4000~4000
 	vector<int> count(8001, 0);  //index : 0~8000
 	for (int i = 0; i < v.size(); i++) {
-		count[v[i] + 4000]++;  //¼ö+4000ÀÎ index¿¡ count Áõ°¡
+		count[v[i] + 4000]++;  //ìˆ˜+4000ì¸ indexì— count ì¦ê°€
 	}
 
-	vector<int> temp = count;	// º¹»ç
+	vector<int> temp = count;	// ë³µì‚¬
 
-	sort(temp.begin(), temp.end(), greater<>());  //³»¸²Â÷¼ø Á¤·Ä
+	sort(temp.begin(), temp.end(), greater<>());  //ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬
 	
 	int mode_count = temp[0];
 	int mode = 0;
-	int check = 0;	// ÃÖºó°ªÀÌ ¿©·¯°³ÀÖÀ» ¶© µÎ¹øÂ°·Î ÀÛÀº °ªÀ¸·Î
+	int check = 0;	// ìµœë¹ˆê°’ì´ ì—¬ëŸ¬ê°œìˆì„ ë• ë‘ë²ˆì§¸ë¡œ ì‘ì€ ê°’ìœ¼ë¡œ
 
 	for (int i = 0; i <= 8000; i++) {
 		if (check == 2) break;
@@ -58,7 +58,7 @@ int calMode(vector<int>& v) {
 }
 
 int calRange(vector<int>& v) {
-	sort(v.begin(), v.end()); // ¿À¸§Â÷¼ø Á¤·Ä
+	sort(v.begin(), v.end()); // ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
 	int max = v[v.size() - 1];
 	int min = v[0];
 
@@ -67,7 +67,7 @@ int calRange(vector<int>& v) {
 
 int main() {
 	int n;
-	//ÀÔ·Â
+	//ì…ë ¥
 	cin >> n; 
 
 	vector<int> v(n, 0);
