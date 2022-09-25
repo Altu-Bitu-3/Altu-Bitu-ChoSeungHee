@@ -1,37 +1,37 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 
 using namespace std;
 
 /*
-* »çÁø Æ² ¼ö n (ÈÄº¸ÀÚ ¼ö)
-* ÃßÃµ ¼ö¸¦ ÀÔ·ÂÇÏ´Â vector<int> (n, 0)
-* ÃÖ¼Ò ÃßÃµ¼ö¸¦ °¡Áö´Â index¸¦ ÀúÀåÇÏ´Â min º¯¼ö
-* ÀûÀº ÃßÃµ¼ö ÀÎ¿ø ¿©·µÀÏ °æ¿ì, ¿À·¡µÈ ÈÄº¸ ºÎÅÍ »èÁ¦ -> min °»½Å Á¶°Ç : ÀÌÇÏX, ¹Ì¸¸O
-* »èÁ¦µÉ ¶© value 0À¸·Î °»½Å
+* ì‚¬ì§„ í‹€ ìˆ˜ n (í›„ë³´ì ìˆ˜)
+* ì¶”ì²œ ìˆ˜ë¥¼ ì…ë ¥í•˜ëŠ” vector<int> (n, 0)
+* ìµœì†Œ ì¶”ì²œìˆ˜ë¥¼ ê°€ì§€ëŠ” indexë¥¼ ì €ì¥í•˜ëŠ” min ë³€ìˆ˜
+* ì ì€ ì¶”ì²œìˆ˜ ì¸ì› ì—¬ëŸ¿ì¼ ê²½ìš°, ì˜¤ë˜ëœ í›„ë³´ ë¶€í„° ì‚­ì œ -> min ê°±ì‹  ì¡°ê±´ : ì´í•˜X, ë¯¸ë§ŒO
+* ì‚­ì œë  ë• value 0ìœ¼ë¡œ ê°±ì‹ 
 * 
-* vector<int>(101,0) : index=ÇĞ»ıÀ» ³ªÅ¸³»´Â ¹øÈ£, value=ÃßÃµ ¼ö
-* vector<int> : »çÁøÆ², value = »çÁøÆ²¿¡ °É¸° ÇĞ»ı ¹øÈ£
+* vector<int>(101,0) : index=í•™ìƒì„ ë‚˜íƒ€ë‚´ëŠ” ë²ˆí˜¸, value=ì¶”ì²œ ìˆ˜
+* vector<int> : ì‚¬ì§„í‹€, value = ì‚¬ì§„í‹€ì— ê±¸ë¦° í•™ìƒ ë²ˆí˜¸
 * 
 * 
 */
 
 
 void updateFrame(vector<int> &frame, vector<int>& recommend, int n, int num) {	
-	// ÃßÃµ¼ö Áõ°¡
+	// ì¶”ì²œìˆ˜ ì¦ê°€
 	recommend[num]++;
 
-	// ÀÌ¹Ì »çÁø Æ²¿¡ °É·ÁÀÖ´ÂÁö È®ÀÎ
+	// ì´ë¯¸ ì‚¬ì§„ í‹€ì— ê±¸ë ¤ìˆëŠ”ì§€ í™•ì¸
 	if (recommend[num] > 1) {
 		return;
 	}
 
-	// ¸¸¾à frameÀÌ ´Ù Ã¡´Ù¸é?
+	// ë§Œì•½ frameì´ ë‹¤ ì°¼ë‹¤ë©´?
 	if (frame.size() == n) {
-		int min_value = 1000;		// ÃßÃµ¼ö ÃÖ¼Ò
-		int min_idx = 0;	// ÃßÃµ¼ö ÃÖ¼ÒÀÎ ÇĞ»ı ¹øÈ£
-		// ÃÖ¼Ú°ª °»½Å
+		int min_value = 1000;		// ì¶”ì²œìˆ˜ ìµœì†Œ
+		int min_idx = 0;	// ì¶”ì²œìˆ˜ ìµœì†Œì¸ í•™ìƒ ë²ˆí˜¸
+		// ìµœì†Ÿê°’ ê°±ì‹ 
 		for (int i = 0; i < frame.size(); i++) {
 			if (min_value > recommend[frame[i]]) {
 				min_value = recommend[frame[i]];
@@ -43,29 +43,29 @@ void updateFrame(vector<int> &frame, vector<int>& recommend, int n, int num) {
 		recommend[min_idx] = 0;
 	}
 
-	// frame¿¡ Ãß°¡ 
+	// frameì— ì¶”ê°€ 
 	frame.push_back(num);
 
 	return;
 }
 
 int main() {
-	int n, total;	// »çÁøÆ² ¼ö, ÃÑ ÃßÃµ ¼ö
+	int n, total;	// ì‚¬ì§„í‹€ ìˆ˜, ì´ ì¶”ì²œ ìˆ˜
 	cin >> n >> total;
-	vector<int> frame;	// »çÁøÆ² vector
-	vector<int> recommend(101, 0);	// ÃßÃµ¼ö vector
+	vector<int> frame;	// ì‚¬ì§„í‹€ vector
+	vector<int> recommend(101, 0);	// ì¶”ì²œìˆ˜ vector
 
 	while (total--) {
-		int num;	// ÃßÃµ¹ŞÀº ÇĞ»ı ¹øÈ£
+		int num;	// ì¶”ì²œë°›ì€ í•™ìƒ ë²ˆí˜¸
 		cin >> num;
 
-		// »çÁøÆ² °»½Å
+		// ì‚¬ì§„í‹€ ê°±ì‹ 
 		updateFrame(frame, recommend, n, num);
 
 	}
 
-	sort(frame.begin(), frame.end());	// ¹øÈ£ ¼øÀ¸·Î Á¤·Ä
-	// Ãâ·Â
+	sort(frame.begin(), frame.end());	// ë²ˆí˜¸ ìˆœìœ¼ë¡œ ì •ë ¬
+	// ì¶œë ¥
 	for (int i = 0; i < frame.size(); i++) {
 		cout << frame[i] << ' ';
 	}
