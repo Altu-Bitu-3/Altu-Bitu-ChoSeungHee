@@ -1,62 +1,62 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 
 using namespace std;
 
-int n;			// µµ½Ã ¼ö
-int cost[10][10];	//cost °ªÀº ´ëÄªX ([Ãâ¹ß][µµÂø]À¸·Î Á¢±Ù)
-int start;		// ½ÃÀÛ µµ½Ã
+int n;			// ë„ì‹œ ìˆ˜
+int cost[10][10];	//cost ê°’ì€ ëŒ€ì¹­X ([ì¶œë°œ][ë„ì°©]ìœ¼ë¡œ ì ‘ê·¼)
+int start;		// ì‹œì‘ ë„ì‹œ
 int min_total = 1e10;
-vector<bool> is_visited(10);	// ¹æ¹® ¿©ºÎ
+vector<bool> is_visited(10);	// ë°©ë¬¸ ì—¬ë¶€
 
-// cnt : ¹æ¹®ÇÑ µµ½Ã °³¼ö , now : ÇöÀçµµ½Ã, total : ÇöÀç±îÁö ºñ¿ë
+// cnt : ë°©ë¬¸í•œ ë„ì‹œ ê°œìˆ˜ , now : í˜„ì¬ë„ì‹œ, total : í˜„ì¬ê¹Œì§€ ë¹„ìš©
 void visit(int cnt, int now, int total) {
-	// ¸ğµç µµ½Ã ¹æ¹® ½Ã 
+	// ëª¨ë“  ë„ì‹œ ë°©ë¬¸ ì‹œ 
 	if (cnt == n) {		
-		if (cost[now][start] == 0) return;	// ½ÃÀÛµµ½Ã ¸øµ¹¾Æ°¡´Â °æ·Î
+		if (cost[now][start] == 0) return;	// ì‹œì‘ë„ì‹œ ëª»ëŒì•„ê°€ëŠ” ê²½ë¡œ
 
-		// ½ÃÀÛµµ½Ã·Î µ¹¾Æ°¨
+		// ì‹œì‘ë„ì‹œë¡œ ëŒì•„ê°
 		total += cost[now][start];
-		// ÃÖ¼Ò ºñ¿ë ¾÷µ¥ÀÌÆ®
+		// ìµœì†Œ ë¹„ìš© ì—…ë°ì´íŠ¸
 		min_total = min(min_total, total);
 
 		return;
 	}
 
-	// ´ÙÀ½ µµ½Ã ¹æ¹®
+	// ë‹¤ìŒ ë„ì‹œ ë°©ë¬¸
 	for (int i = 0; i < n; i++) {
 		if (is_visited[i]) continue;
-		if (cost[now][i] == 0) continue;	// ±æÀÌ ¾ø´Â °æ¿ì(ºñ¿ë 0)
+		if (cost[now][i] == 0) continue;	// ê¸¸ì´ ì—†ëŠ” ê²½ìš°(ë¹„ìš© 0)
 
 		is_visited[i] = true;
 		visit(cnt + 1, i, total+cost[now][i]);
-		// µ¹¾Æ¿ÔÀ»¶§ ¹æ¹® ¿©ºÎ ÇØÁ¦ (¹éÆ®·¡Å·)
+		// ëŒì•„ì™”ì„ë•Œ ë°©ë¬¸ ì—¬ë¶€ í•´ì œ (ë°±íŠ¸ë˜í‚¹)
 		is_visited[i] = false;
 	}
 }
 
 int main() {
-	// ÀÔ·Â
+	// ì…ë ¥
 	cin >> n;
 
-	// ºñ¿ëÀÇ ÀÌÂ÷¿ø ¹è¿­ »ı¼º
+	// ë¹„ìš©ì˜ ì´ì°¨ì› ë°°ì—´ ìƒì„±
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
 			cin >> cost[i][j];
 		}
 	}
 
-	// Ãâ¹ßÁöÁ¡ ÁöÁ¤ÇÏ¿© ¼øÈ¸ ½ÃÀÛ
+	// ì¶œë°œì§€ì  ì§€ì •í•˜ì—¬ ìˆœíšŒ ì‹œì‘
 	for (int i = 0; i < n; i++) {
 		start = i;
 
 		is_visited[i] = true;
 		visit(1, i, 0);
-		// µ¹¾Æ¿ÔÀ»¶§ ¹æ¹® ¿©ºÎ ÇØÁ¦ (¹éÆ®·¡Å·)
+		// ëŒì•„ì™”ì„ë•Œ ë°©ë¬¸ ì—¬ë¶€ í•´ì œ (ë°±íŠ¸ë˜í‚¹)
 		is_visited[i] = false;
 	}
 
-	// Ãâ·Â 
+	// ì¶œë ¥ 
 	cout << min_total;
 
 

@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
 #include <algorithm>
 
@@ -40,7 +40,7 @@ void backtracking(int cnt) {
 }
 
 int main() {
-	// �Է�
+	// 입력
 	cin >> n >> m;
 
 	arr.assign(n, 0);
