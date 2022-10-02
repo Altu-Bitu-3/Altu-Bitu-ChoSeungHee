@@ -1,12 +1,12 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 
 using namespace std;
 
-// ÇØ´ç ÀÎµ¦½º·Î ³¡³ª´Â "Áõ°¡ÇÏ´Â ºÎºÐ¼ö¿­"ÀÇ ±æÀÌÀÇ ÃÖ´ñ°ª ÀúÀå
-// Ã³À½Àº ´Ù ±æÀÌ 1·Î ±íÀÌ ¹è¿­À» ¸ÕÀú! Ã¤¿ì±â
+// í•´ë‹¹ ì¸ë±ìŠ¤ë¡œ ëë‚˜ëŠ” "ì¦ê°€í•˜ëŠ” ë¶€ë¶„ìˆ˜ì—´"ì˜ ê¸¸ì´ì˜ ìµœëŒ“ê°’ ì €ìž¥
+// ì²˜ìŒì€ ë‹¤ ê¸¸ì´ 1ë¡œ ê¹Šì´ ë°°ì—´ì„ ë¨¼ì €! ì±„ìš°ê¸°
 // 
-// DP[i] = MAX( j=0~j=i-1 DP[j]) + 1 (´Ü, A[j] < A[i])
+// DP[i] = MAX( j=0~j=i-1 DP[j]) + 1 (ë‹¨, A[j] < A[i])
 
 int main() {
 	int n;

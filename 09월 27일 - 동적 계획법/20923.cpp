@@ -1,16 +1,16 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <deque>
 using namespace std;
 
 /*
-* ÇÒ¸®°¥¸® °ÔÀÓ
-* - ¼ö¿¬ÀÌ Á¾ : ³»³õÀº Ä«µå ÇÕÀÌ 5ÀÏ ¶§
-* - µµµµ Á¾ : ³»³õÀº Ä«µå°¡ 5ÀÏ ¶§
-* - Á¾ Ä£ »ç¶÷Àº : »ó´ë¹æ ´õ¹Ì µÚÁý¾î¼­ ¾Æ·¡¿¡ Ãß°¡ - ÀÚ±â²¨ µÚÁý¾î¼­ ¾Æ·¡¿¡ Ãß°¡
-* - M¹øÂ° ¹ÙÄû¿¡ µµ´ÞÇÏ¸é Ä«µå ¼ö·Î ½ÂºÎ º¸°í, ´©±º°¡ ¸ÕÀú 0ÀÌ µÇ¸é »ó´ë ½Â¸®
+* í• ë¦¬ê°ˆë¦¬ ê²Œìž„
+* - ìˆ˜ì—°ì´ ì¢… : ë‚´ë†“ì€ ì¹´ë“œ í•©ì´ 5ì¼ ë•Œ
+* - ë„ë„ ì¢… : ë‚´ë†“ì€ ì¹´ë“œê°€ 5ì¼ ë•Œ
+* - ì¢… ì¹œ ì‚¬ëžŒì€ : ìƒëŒ€ë°© ë”ë¯¸ ë’¤ì§‘ì–´ì„œ ì•„ëž˜ì— ì¶”ê°€ - ìžê¸°êº¼ ë’¤ì§‘ì–´ì„œ ì•„ëž˜ì— ì¶”ê°€
+* - Më²ˆì§¸ ë°”í€´ì— ë„ë‹¬í•˜ë©´ ì¹´ë“œ ìˆ˜ë¡œ ìŠ¹ë¶€ ë³´ê³ , ëˆ„êµ°ê°€ ë¨¼ì € 0ì´ ë˜ë©´ ìƒëŒ€ ìŠ¹ë¦¬
 */
 
-// deque : Ä«µåÀÇ ¾Æ·¡¸¦ front, À§¸¦ backÀ¸·Î »ý°¢
+// deque : ì¹´ë“œì˜ ì•„ëž˜ë¥¼ front, ìœ„ë¥¼ backìœ¼ë¡œ ìƒê°
 
 typedef deque<int> deq;
 
@@ -18,11 +18,11 @@ deq do_card, su_card;
 deq do_ground, su_ground;
 int m;
 
-// Á¾À» ÃÆ´Ù¸é, Ä£»ç¶÷ÀÇ card¿¡ »ó´ë¿Í ÀÚ½ÅÀÇ ground µ¦ÀÌ "µÚÁý¾î¼­" Ãß°¡µÊ. 
-// ¾çÂÊÀÇ ground´Â ÃÊ±âÈ­
+// ì¢…ì„ ì³¤ë‹¤ë©´, ì¹œì‚¬ëžŒì˜ cardì— ìƒëŒ€ì™€ ìžì‹ ì˜ ground ë±ì´ "ë’¤ì§‘ì–´ì„œ" ì¶”ê°€ë¨. 
+// ì–‘ìª½ì˜ groundëŠ” ì´ˆê¸°í™”
 
 void check(int do_now, int su_now) {
-	//µµµµ Á¾
+	//ë„ë„ ì¢…
 	if (!do_ground.empty() && !su_ground.empty() && (do_now + su_now) == 5) {
 		while (!do_ground.empty()) {
 			su_card.push_front(do_ground.front());
@@ -34,7 +34,7 @@ void check(int do_now, int su_now) {
 		}
 	}
 
-	//¼ö¿¬ Á¾
+	//ìˆ˜ì—° ì¢…
 	if (do_now == 5 || su_now == 5) {
 		while (!su_ground.empty()) {
 			do_card.push_front(su_ground.front());
@@ -56,7 +56,7 @@ void haliGali() {
 
 	while (true) {
 
-		// °¢ÀÚ Ä«µå ±×¶ó¿îµå¿¡ ²¨³»±â
+		// ê°ìž ì¹´ë“œ ê·¸ë¼ìš´ë“œì— êº¼ë‚´ê¸°
 		do_now = do_card.back();
 		do_ground.push_back(do_now);
 		do_card.pop_back();
@@ -95,7 +95,7 @@ void haliGali() {
 
 int main() {
 	int n;
-	// ÀÔ·Â
+	// ìž…ë ¥
 	cin >> n >> m;
 
 	while (n--) {
