@@ -1,29 +1,29 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 
 using namespace std;
 
 /*
-* ½ºÀ§Ä¡ on : 1, off : 0
-* ³²ÇĞ»ı, ¹ŞÀº¼öÀÇ ¹è¼ö ½ºÀ§Ä¡ -> switch
-* ¿©ÇĞ»ı, ¹ŞÀº¼ö Áß½ÉÀ¸·Î ´ëÄªµÇ´Â ¾çÂÊ ÃÖ´ë ¹üÀ§ -> switch (È¦¼ö °³)
+* ìŠ¤ìœ„ì¹˜ on : 1, off : 0
+* ë‚¨í•™ìƒ, ë°›ì€ìˆ˜ì˜ ë°°ìˆ˜ ìŠ¤ìœ„ì¹˜ -> switch
+* ì—¬í•™ìƒ, ë°›ì€ìˆ˜ ì¤‘ì‹¬ìœ¼ë¡œ ëŒ€ì¹­ë˜ëŠ” ì–‘ìª½ ìµœëŒ€ ë²”ìœ„ -> switch (í™€ìˆ˜ ê°œ)
 */
 
 
 void changeSwitch(int sex, int num, vector<bool>& switches) {
-	// ³²ÇĞ»ı
+	// ë‚¨í•™ìƒ
 	if (sex == 1) {		
 		for (int i = 1; i * num < switches.size(); i++) {
 			switches[i * num] = !switches[i * num];
 		}
 	}
-	// ¿©ÇĞ»ı
+	// ì—¬í•™ìƒ
 	else {
 		switches[num] = !switches[num];
 
 		for (int i = 1; (num - i) >= 1 && (num + i) < switches.size(); i++) {
 			if (switches[num - i] != switches[num + i]) {
-				break;	// ´ëÄªÀÌ ¾ÈµÇ´Â ¼ø°£ Á¾·á
+				break;	// ëŒ€ì¹­ì´ ì•ˆë˜ëŠ” ìˆœê°„ ì¢…ë£Œ
 			}
 			switches[num - i] = !switches[num - i];
 			switches[num + i] = !switches[num + i];
@@ -33,26 +33,26 @@ void changeSwitch(int sex, int num, vector<bool>& switches) {
 }
 
 int main() {
-	int n, stu, sex, num;	// ½ºÀ§Ä¡ °³¼ö (100 ÀÌÇÏ), ÇĞ»ı ¼ö, ¼ºº°, ¹ŞÀº ¼ö
+	int n, stu, sex, num;	// ìŠ¤ìœ„ì¹˜ ê°œìˆ˜ (100 ì´í•˜), í•™ìƒ ìˆ˜, ì„±ë³„, ë°›ì€ ìˆ˜
 	bool temp;
 
-	// ÀÔ·Â
+	// ì…ë ¥
 	cin >> n;
-	vector<bool> switches(n+1,false);	// ½ºÀ§Ä¡ »óÅÂ (on : true, off : false)
+	vector<bool> switches(n+1,false);	// ìŠ¤ìœ„ì¹˜ ìƒíƒœ (on : true, off : false)
 
-	// ½ºÀ§Ä¡ onoff ¿©ºÎ boolean º¤ÅÍ »ı¼º
-	for (int i = 1; i <= n; i++) {		// ½ºÀ§Ä¡ ¹øÈ£ 1ºÎÅÍ ½ÃÀÛ
+	// ìŠ¤ìœ„ì¹˜ onoff ì—¬ë¶€ boolean ë²¡í„° ìƒì„±
+	for (int i = 1; i <= n; i++) {		// ìŠ¤ìœ„ì¹˜ ë²ˆí˜¸ 1ë¶€í„° ì‹œì‘
 		cin >> temp;
 		switches[i] = temp ? true : false;
 	}
 
-	cin >> stu; // ÇĞ»ı ¼ö ÀÔ·Â
+	cin >> stu; // í•™ìƒ ìˆ˜ ì…ë ¥
 	while (stu--) {
 		cin >> sex >> num;
 		changeSwitch(sex, num, switches);
 	}
 
-	// Ãâ·Â
+	// ì¶œë ¥
 
 	for (int i = 1; i < switches.size(); i++) {
 		cout << switches[i] ? '1' : '0';
