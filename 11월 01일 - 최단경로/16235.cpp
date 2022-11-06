@@ -1,4 +1,4 @@
-// ÇØ°á ½ÇÆĞ 
+ï»¿// í•´ê²° ì‹¤íŒ¨ 
 
 #include <iostream>
 #include <vector>
@@ -12,22 +12,22 @@ typedef tuple<int, int, int> tp;
 int n;
 
 /*
-* - NxNÀÇ ¶¥. °¢ Ä­Àº (r,c)
-* - Ã³À½ ¸ğµç Ä­¿¡ ¾çºĞ 5
-* - º½ : ³ªÀÌ¸¸Å­ ¾çºĞ ¸Ô±â -> ³ªÀÌ +1
-*		- ÀÚ½ÅÀÇ Ä­¿¡ ÀÖ´Â ¾çºĞ¸¸
-*		- ¾î¸° ³ª¹«ºÎÅÍ
-*		- ¾çºĞ ³ªÀÌ¸¸Å­ ¸ø¸ÔÀ¸¸é Áï»ç
-* - ¿©¸§ : ( º½¿¡ Á×Àº ³ª¹« ³ªÀÌ / 2 ) ¸¸Å­ ¾çºĞ Ãß°¡ (Á¤¼ö)
-* - °¡À» : ³ªÀÌ 5ÀÇ ¹è¼öÀÎ ³ª¹« ¹ø½Ä -> ÀÎÁ¢ÇÑ Ä­¿¡ ³ªÀÌ 1 ³ª¹« »ı¼º
-* - °Ü¿ï : A[r][c]¸¸Å­ ¾çºĞ Ãß°¡
+* - NxNì˜ ë•…. ê° ì¹¸ì€ (r,c)
+* - ì²˜ìŒ ëª¨ë“  ì¹¸ì— ì–‘ë¶„ 5
+* - ë´„ : ë‚˜ì´ë§Œí¼ ì–‘ë¶„ ë¨¹ê¸° -> ë‚˜ì´ +1
+*		- ìì‹ ì˜ ì¹¸ì— ìˆëŠ” ì–‘ë¶„ë§Œ
+*		- ì–´ë¦° ë‚˜ë¬´ë¶€í„°
+*		- ì–‘ë¶„ ë‚˜ì´ë§Œí¼ ëª»ë¨¹ìœ¼ë©´ ì¦‰ì‚¬
+* - ì—¬ë¦„ : ( ë´„ì— ì£½ì€ ë‚˜ë¬´ ë‚˜ì´ / 2 ) ë§Œí¼ ì–‘ë¶„ ì¶”ê°€ (ì •ìˆ˜)
+* - ê°€ì„ : ë‚˜ì´ 5ì˜ ë°°ìˆ˜ì¸ ë‚˜ë¬´ ë²ˆì‹ -> ì¸ì ‘í•œ ì¹¸ì— ë‚˜ì´ 1 ë‚˜ë¬´ ìƒì„±
+* - ê²¨ìš¸ : A[r][c]ë§Œí¼ ì–‘ë¶„ ì¶”ê°€
 * 
-* Q : K³â ÈÄ »ì¾ÆÀÖ´Â ³ª¹« ¼ö
+* Q : Kë…„ í›„ ì‚´ì•„ìˆëŠ” ë‚˜ë¬´ ìˆ˜
 */
 
 void pushIt(int x, int y, deque<tp>& trees) {
-	// x, y Á¶°Ç »ìÇÇ±â
-	// trees¿¡ {1, x, y} ³Ö¾îÁÖ±â
+	// x, y ì¡°ê±´ ì‚´í”¼ê¸°
+	// treesì— {1, x, y} ë„£ì–´ì£¼ê¸°
 
 	if ((x>=1 && x<=n) && (y >= 1 && y<=n)) {
 		trees.push_back({ 1, x, y });
@@ -36,18 +36,18 @@ void pushIt(int x, int y, deque<tp>& trees) {
 
 void lifeCycle(vector<vector<int>> &land, deque<tp> &trees, vector<vector<int>>& A) {
 
-	stack<tp> died;  // Á×Àº ³ª¹« ¸ğÀ½
+	stack<tp> died;  // ì£½ì€ ë‚˜ë¬´ ëª¨ìŒ
 
 	/*
-	* [º½]
-	* trees¸¦ ³ªÀÌ¼øÀ¸·Î Á¤·Ä ÈÄ treeµéÀ» µ¹¸é¼­
-	* 1. ÀÚ½ÅÀÇ Ä­¿¡ ÀÚ½ÅÀÇ ³ªÀÌ¸¸Å­ÀÇ ¾çºĞÀÌ ÀÖ´ÂÁö È®ÀÎ
-	* 2. ¾øÀ¸¸é Áï»ç pop 
-	* 3. ÀÖÀ¸¸é ³ªÀÌ¸¸Å­ ¾çºĞ ¸Ô±â (¾çºĞ minus) & ³ªÀÌ +1
+	* [ë´„]
+	* treesë¥¼ ë‚˜ì´ìˆœìœ¼ë¡œ ì •ë ¬ í›„ treeë“¤ì„ ëŒë©´ì„œ
+	* 1. ìì‹ ì˜ ì¹¸ì— ìì‹ ì˜ ë‚˜ì´ë§Œí¼ì˜ ì–‘ë¶„ì´ ìˆëŠ”ì§€ í™•ì¸
+	* 2. ì—†ìœ¼ë©´ ì¦‰ì‚¬ pop 
+	* 3. ìˆìœ¼ë©´ ë‚˜ì´ë§Œí¼ ì–‘ë¶„ ë¨¹ê¸° (ì–‘ë¶„ minus) & ë‚˜ì´ +1
 	*/
 
 	int x, y, spring_age, size=trees.size();
-	sort(trees.begin(), trees.end());	// ³ªÀÌ¼øÀ¸·Î Á¤·Ä
+	sort(trees.begin(), trees.end());	// ë‚˜ì´ìˆœìœ¼ë¡œ ì •ë ¬
 	for (int i = 0; i < size; i++) {
 		x = get<1>(trees.front());
 		y = get<2>(trees.front());
@@ -61,7 +61,7 @@ void lifeCycle(vector<vector<int>> &land, deque<tp> &trees, vector<vector<int>>&
 		trees.push_back({ spring_age + 1, x, y });
 	}
 
-	// ¿©¸§ : ( º½¿¡ Á×Àº ³ª¹« ³ªÀÌ / 2 ) ¸¸Å­ ¾çºĞ Ãß°¡ (Á¤¼ö) 
+	// ì—¬ë¦„ : ( ë´„ì— ì£½ì€ ë‚˜ë¬´ ë‚˜ì´ / 2 ) ë§Œí¼ ì–‘ë¶„ ì¶”ê°€ (ì •ìˆ˜) 
 
 	while (!died.empty()) {
 		tp last_died = died.top();
@@ -69,7 +69,7 @@ void lifeCycle(vector<vector<int>> &land, deque<tp> &trees, vector<vector<int>>&
 		died.pop();
 	}
 
-	// °¡À» : ³ªÀÌ 5ÀÇ ¹è¼öÀÎ ³ª¹« ¹ø½Ä->ÀÎÁ¢ÇÑ Ä­¿¡ ³ªÀÌ 1 ³ª¹« »ı¼º
+	// ê°€ì„ : ë‚˜ì´ 5ì˜ ë°°ìˆ˜ì¸ ë‚˜ë¬´ ë²ˆì‹->ì¸ì ‘í•œ ì¹¸ì— ë‚˜ì´ 1 ë‚˜ë¬´ ìƒì„±
 
 	int fall_age, r, c;
 	for (int i = 0; i < trees.size(); i++) {
@@ -91,7 +91,7 @@ void lifeCycle(vector<vector<int>> &land, deque<tp> &trees, vector<vector<int>>&
 
 	}
 
-	// °Ü¿ï : A[r][c]¸¸Å­ ¾çºĞ Ãß°¡
+	// ê²¨ìš¸ : A[r][c]ë§Œí¼ ì–‘ë¶„ ì¶”ê°€
 	for (int i = 1; i <= n; i++) {
 		for (int j = 1; j <= n; j++) {
 			land[i][j] += A[i][j];
@@ -103,7 +103,7 @@ void lifeCycle(vector<vector<int>> &land, deque<tp> &trees, vector<vector<int>>&
 int main() {
 	int m, k, x, y, z;
 	
-	// ÀÔ·Â
+	// ì…ë ¥
 	cin >> n >> m >> k;
 	vector<vector<int>> land(n + 1, vector<int>(n + 1, 5));
 	vector<vector<int>> A(n + 1, vector<int>(n + 1, 0));
@@ -117,17 +117,17 @@ int main() {
 
 	while (m--) {
 		cin >> x >> y >> z;
-		tp tree = {z, x, y};	// ³ªÀÌ, xÁÂÇ¥, yÁÂÇ¥
+		tp tree = {z, x, y};	// ë‚˜ì´, xì¢Œí‘œ, yì¢Œí‘œ
 		trees.push_back(tree);
 	}
 
-	// ¿¬»ê
+	// ì—°ì‚°
 	while (k--) {
 		lifeCycle(land, trees, A);
 	}
 
 
-	// Ãâ·Â
+	// ì¶œë ¥
 	cout << trees.size();
 
 	return 0;

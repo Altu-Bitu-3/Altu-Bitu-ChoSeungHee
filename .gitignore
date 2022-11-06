@@ -16,3 +16,16 @@
 *.db-shm
 *.db-wal
 *.opendb
+/09월 23일 - 백트래킹/x64/Debug/09월 23일 - 백트래킹.exe
+/09월 23일 - 백트래킹/x64/Debug/09월 23일 - 백트래킹.ilk
+/09월 23일 - 백트래킹/x64/Debug/09월 23일 - 백트래킹.tlog/09월 23일 - 백트래킹.lastbuildstate
+/09월 23일 - 백트래킹/x64/Debug/09월 23일 - 백트래킹.tlog/CL.read.1.tlog
+*.tlog
+*.obj
+*.txt
+*.pdb
+*.log
+*.recipe
+*.idb
+*.exe
+*.ilk

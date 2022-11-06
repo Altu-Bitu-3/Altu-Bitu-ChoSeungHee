@@ -1,23 +1,23 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 
 using namespace std;
 
-// point : µÎ°³ÀÇ Á¤Á¡À» ¹İµå½Ã Áö³ª¾ß ÇÔ
-// v1 -> v2 : 1~v1±îÁö ÃÖ´Ü °æ·Î -> v1~v2±îÁö ÃÖ´Ü °æ·Î -> v2~N±îÁö ÃÖ´Ü °æ·Î
-// v2 -> v1 : 1~v2±îÁö ÃÖ´Ü °æ·Î -> v2~v1±îÁö ÃÖ´Ü °æ·Î -> v1~N±îÁö ÃÖ´Ü °æ·Î
-// µÑÀ» ±¸ÇÑ ÈÄ ´õ ÂªÀº °æ·Î ¼±ÅÃ
+// point : ë‘ê°œì˜ ì •ì ì„ ë°˜ë“œì‹œ ì§€ë‚˜ì•¼ í•¨
+// v1 -> v2 : 1~v1ê¹Œì§€ ìµœë‹¨ ê²½ë¡œ -> v1~v2ê¹Œì§€ ìµœë‹¨ ê²½ë¡œ -> v2~Nê¹Œì§€ ìµœë‹¨ ê²½ë¡œ
+// v2 -> v1 : 1~v2ê¹Œì§€ ìµœë‹¨ ê²½ë¡œ -> v2~v1ê¹Œì§€ ìµœë‹¨ ê²½ë¡œ -> v1~Nê¹Œì§€ ìµœë‹¨ ê²½ë¡œ
+// ë‘˜ì„ êµ¬í•œ í›„ ë” ì§§ì€ ê²½ë¡œ ì„ íƒ
 
 typedef pair<int, int> ci;
 typedef vector<int> vi;
 const int INF = 2e9;
 
 vi dijkstra(int start, int start_weight, int n, vector<vector<ci>>& graph) {
-	vi dist(n + 1, INF);	// ÃÖ´Ü °æ·Î ÀúÀå
-	priority_queue<ci, vector<ci>, greater<>> pq;	// first: °Å¸®
+	vi dist(n + 1, INF);	// ìµœë‹¨ ê²½ë¡œ ì €ì¥
+	priority_queue<ci, vector<ci>, greater<>> pq;	// first: ê±°ë¦¬
 
-	// ½ÃÀÛ Á¤Á¡ ÃÊ±âÈ­
+	// ì‹œì‘ ì •ì  ì´ˆê¸°í™”
 	dist[start] = start_weight;
 	pq.push({ start_weight, start });
 
@@ -48,9 +48,9 @@ vi dijkstra(int start, int start_weight, int n, vector<vector<ci>>& graph) {
 int main() {
 	int n, e, a, b, c, v1, v2;
 
-	// ÀÔ·Â
-	cin >> n >> e;	// Á¤Á¡ÀÇ °³¼ö, °£¼±ÀÇ °³¼ö
-	vector<vector<ci>> graph(n + 1, vector<ci>(0));	// ÀÎÁ¢ ¸®½ºÆ®
+	// ì…ë ¥
+	cin >> n >> e;	// ì •ì ì˜ ê°œìˆ˜, ê°„ì„ ì˜ ê°œìˆ˜
+	vector<vector<ci>> graph(n + 1, vector<ci>(0));	// ì¸ì ‘ ë¦¬ìŠ¤íŠ¸
 
 	while (e--) {
 		cin >> a >> b >> c;
@@ -61,17 +61,17 @@ int main() {
 	cin >> v1 >> v2;
 
 
-	// ¿¬»ê
+	// ì—°ì‚°
 	vi dist1 = dijkstra(1, 0, n, graph);
 	vi dist2 = dijkstra(v1, dist1[v1], n, graph);
-	vi dist3 = dijkstra(v2, dist2[v2], n, graph); // ->dist3[n] : v1->v2 ÃÖ´Ü °æ·Î
+	vi dist3 = dijkstra(v2, dist2[v2], n, graph); // ->dist3[n] : v1->v2 ìµœë‹¨ ê²½ë¡œ
 
 	vi dist1_ = dijkstra(1, 0, n, graph);
 	vi dist2_ = dijkstra(v2, dist1_[v2], n, graph);
-	vi dist3_ = dijkstra(v1, dist2_[v1], n, graph); // ->dist3_[n] : v2->v1 ÃÖ´Ü °æ·Î
+	vi dist3_ = dijkstra(v1, dist2_[v1], n, graph); // ->dist3_[n] : v2->v1 ìµœë‹¨ ê²½ë¡œ
 
 
-	// Ãâ·Â
+	// ì¶œë ¥
 	int result = min(dist3[n], dist3_[n]);
 	cout << (result==INF ? -1 : result);
 

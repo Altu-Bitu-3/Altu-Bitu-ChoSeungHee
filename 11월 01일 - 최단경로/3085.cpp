@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 
@@ -7,10 +7,10 @@ using namespace std;
 typedef vector<vector<char>> vvc;
 
 int check(vvc& board_copy, int n) {
-	// ¸ÔÀ» ¼ö ÀÖ´Â »çÅÁ ÃÖ´ë °³¼ö ±¸ÇÏ´Â ÇÔ¼ö
+	// ë¨¹ì„ ìˆ˜ ìˆëŠ” ì‚¬íƒ• ìµœëŒ€ ê°œìˆ˜ êµ¬í•˜ëŠ” í•¨ìˆ˜
 	int max_count = 0;
 
-	// Çà ±âÁØ
+	// í–‰ ê¸°ì¤€
 	for (int i = 0; i < n; i++) {
 		int count = 1;
 		char start = board_copy[i][0];
@@ -20,13 +20,13 @@ int check(vvc& board_copy, int n) {
 				continue;
 			}
 			max_count = (max_count < count) ? count : max_count;
-			count = 1;	// ÇÏ³ª¶óµµ ´Ù¸¦°æ¿ì count ÃÊ±âÈ­
+			count = 1;	// í•˜ë‚˜ë¼ë„ ë‹¤ë¥¼ê²½ìš° count ì´ˆê¸°í™”
 			start = board_copy[i][j];
 		}
 		max_count = (max_count < count) ? count : max_count;
 	}
 
-	// ¿­ ±âÁØ
+	// ì—´ ê¸°ì¤€
 	for (int j = 0; j < n; j++) {
 		int count = 1;
 		char start = board_copy[0][j];
@@ -36,7 +36,7 @@ int check(vvc& board_copy, int n) {
 				continue;
 			}
 			max_count = (max_count < count) ? count : max_count;
-			count = 1;	// ÇÏ³ª¶óµµ ´Ù¸¦°æ¿ì count ÃÊ±âÈ­
+			count = 1;	// í•˜ë‚˜ë¼ë„ ë‹¤ë¥¼ê²½ìš° count ì´ˆê¸°í™”
 			start = board_copy[i][j];
 		}
 		max_count = (max_count < count) ? count : max_count;
@@ -51,13 +51,13 @@ void change(vvc& board, int n, vector<int> &result) {
 		for (int j = 0; j < n; j++) {
 
 			if (j != n-1 && board[i][j] != board[i][j+1]) {
-				vvc board_copy = board;	// º¹»ç
+				vvc board_copy = board;	// ë³µì‚¬
 				board_copy[i][j] = board[i][j+1];
 				board_copy[i][j+1] = board[i][j];
 				result.push_back(check(board_copy, n));
 			}
 			if (i != n-1 &&  board[i][j] != board[i+1][j]) {
-				vvc board_copy = board;	// º¹»ç
+				vvc board_copy = board;	// ë³µì‚¬
 				board_copy[i][j] = board[i+1][j];
 				board_copy[i+1][j] = board[i][j];
 				result.push_back(check(board_copy, n));
@@ -71,7 +71,7 @@ int main() {
 	int n;
 	vector<int> result;
 	
-	// ÀÔ·Â
+	// ì…ë ¥
 	cin >> n;
 	vvc board(n, vector<char>(n));
 
@@ -82,7 +82,7 @@ int main() {
 	}
 
 
-	// ¿¬»ê
+	// ì—°ì‚°
 	change(board, n, result);
 
 	cout << *max_element(result.begin(), result.end());

@@ -1,31 +1,31 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 
 using namespace std;
-// ´ÙÀÍ½ºÆ®¶ó ( ÇÑ Á¤Á¡¿¡¼­ ¸ğµç Á¤Á¡±îÁöÀÇ ÃÖ´Ü°Å¸® )
-// a°¡ b¿¡ ÀÇÁ¸ : b·ÎºÎÅÍ a°¡ Àü¿° : graph b -> a
+// ë‹¤ìµìŠ¤íŠ¸ë¼ ( í•œ ì •ì ì—ì„œ ëª¨ë“  ì •ì ê¹Œì§€ì˜ ìµœë‹¨ê±°ë¦¬ )
+// aê°€ bì— ì˜ì¡´ : bë¡œë¶€í„° aê°€ ì „ì—¼ : graph b -> a
 
-// n : ÄÄÇ»ÅÍ ¼ö, d : ÀÇÁ¸¼º ¼ö, c : start ÄÄÇ»ÅÍ
-// a°¡ b¿¡ ÀÇÁ¸ (b->a) , a°¡ Àü¿°µÇ±â ±îÁö sÃÊ
+// n : ì»´í“¨í„° ìˆ˜, d : ì˜ì¡´ì„± ìˆ˜, c : start ì»´í“¨í„°
+// aê°€ bì— ì˜ì¡´ (b->a) , aê°€ ì „ì—¼ë˜ê¸° ê¹Œì§€ sì´ˆ
 
 typedef pair<int, int> ci;
 const int INF = 2e9;
 
 vector<int> dijkstra(int start, int n, vector<vector<ci>>& graph) {
-	vector<int> time(n + 1, INF);	// °¢ ÄÄÇ»ÅÍ±îÁöÀÇ °¨¿° ½Ã°£ ÀúÀå
-	// ÇöÀç Å½»öÇÏ´Â Áß°£ Á¤Á¡±îÁöÀÇ ÃÖ´Ü °æ·Î
-	priority_queue<ci, vector<ci>, greater<>> pq;  // first : °¨¿° ½Ã°£, second : ÄÄÇ»ÅÍ
+	vector<int> time(n + 1, INF);	// ê° ì»´í“¨í„°ê¹Œì§€ì˜ ê°ì—¼ ì‹œê°„ ì €ì¥
+	// í˜„ì¬ íƒìƒ‰í•˜ëŠ” ì¤‘ê°„ ì •ì ê¹Œì§€ì˜ ìµœë‹¨ ê²½ë¡œ
+	priority_queue<ci, vector<ci>, greater<>> pq;  // first : ê°ì—¼ ì‹œê°„, second : ì»´í“¨í„°
 
-	// ½ÃÀÛ Á¤Á¡ ÃÊ±âÈ­
+	// ì‹œì‘ ì •ì  ì´ˆê¸°í™”
 	time[start] = 0;
 	pq.push({ 0, start });
 	while (!pq.empty()) {
-		int weight = pq.top().first;	// ÇöÀç ÄÄÇ»ÅÍ±îÁöÀÇ °¨¿°½Ã°£
-		int comp = pq.top().second;	//ÇöÀç Å½»öÇÏ´Â ÄÄÇ»ÅÍ
+		int weight = pq.top().first;	// í˜„ì¬ ì»´í“¨í„°ê¹Œì§€ì˜ ê°ì—¼ì‹œê°„
+		int comp = pq.top().second;	//í˜„ì¬ íƒìƒ‰í•˜ëŠ” ì»´í“¨í„°
 		pq.pop();
 
-		// ½Ã°£ ÃÊ°ú ¸·´Â ¹ı
+		// ì‹œê°„ ì´ˆê³¼ ë§‰ëŠ” ë²•
 		if (weight > time[comp]) {
 			continue;
 		}
@@ -48,20 +48,20 @@ vector<int> dijkstra(int start, int n, vector<vector<ci>>& graph) {
 int main() {
 	int t, n, d, c, a, b, s;
 
-	cin >> t;	// Å×½ºÆ® ÄÉÀÌ½º ¼ö
+	cin >> t;	// í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ ìˆ˜
 	while (t--) {
-		// ÀÔ·Â 
+		// ì…ë ¥ 
 		cin >> n >> d >> c;
-		vector<vector<ci>> graph(n + 1, vector<ci>(0));	// ÀÎÁ¢ ¸®½ºÆ®
+		vector<vector<ci>> graph(n + 1, vector<ci>(0));	// ì¸ì ‘ ë¦¬ìŠ¤íŠ¸
 		while (d--) {
 			cin >> a >> b >> s;	// b->a
-			graph[b].push_back({ a,s });	// { Àü¿°µÉ ÄÄÇ»ÅÍ ¹øÈ£, Àü¿° ½Ã°£ }
+			graph[b].push_back({ a,s });	// { ì „ì—¼ë  ì»´í“¨í„° ë²ˆí˜¸, ì „ì—¼ ì‹œê°„ }
 		}
 
-		// ¿¬»ê
+		// ì—°ì‚°
 		vector<int> time = dijkstra(c, n, graph);
 
-		// Ãâ·Â
+		// ì¶œë ¥
 		int count=0, max_time = 0;
 		for (int i = 1; i <= n; i++) {
 			if (time[i] == INF) {
