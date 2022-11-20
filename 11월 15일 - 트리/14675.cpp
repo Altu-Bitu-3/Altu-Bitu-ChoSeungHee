@@ -1,17 +1,17 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 
 /*
-* Æ®¸®´Â cycleÀÌ ±âÁ¸¿¡ ¾ø±â ¶§¹®¿¡
-* ¸ðµç °£¼±Àº ´ÜÀý¼±
-* Á¤Á¡Àº ¸®ÇÁ³ëµå¸¦ Á¦¿ÜÇÏ°í ´ÜÀýÁ¡
+* íŠ¸ë¦¬ëŠ” cycleì´ ê¸°ì¡´ì— ì—†ê¸° ë•Œë¬¸ì—
+* ëª¨ë“  ê°„ì„ ì€ ë‹¨ì ˆì„ 
+* ì •ì ì€ ë¦¬í”„ë…¸ë“œë¥¼ ì œì™¸í•˜ê³  ë‹¨ì ˆì 
 */
 using namespace std;
 
 vector<vector<int>> tree;
 
 void checkNode(int k) {
-	// k°¡ ¸®ÇÁ³ëµåÀÎÁö °Ë»ç : tree[k]¿¡ ¿¬°áµÈ °£¼±ÀÌ 1°³ÀÎÁö °Ë»ç
+	// kê°€ ë¦¬í”„ë…¸ë“œì¸ì§€ ê²€ì‚¬ : tree[k]ì— ì—°ê²°ëœ ê°„ì„ ì´ 1ê°œì¸ì§€ ê²€ì‚¬
 	if (tree[k].size() == 1) {
 		cout << "no\n";
 	}
@@ -24,7 +24,7 @@ int main() {
 	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
 	int n, a, b, q, t, k;
-	// ÀÔ·Â
+	// ìž…ë ¥
 	cin >> n;
 
 	tree.assign(n + 1, vector<int>(0));
@@ -39,11 +39,11 @@ int main() {
 	for (int i = 0; i < q; i++) {
 		cin >> t >> k;
 		if (t == 1) {
-			//´ÜÀýÁ¡ °Ë»ç
+			//ë‹¨ì ˆì  ê²€ì‚¬
 			checkNode(k);
 		}
 		else {
-			//´ÜÀý¼± °Ë»ç - ÇÊ¿ä ¾øÀ½
+			//ë‹¨ì ˆì„  ê²€ì‚¬ - í•„ìš” ì—†ìŒ
 			cout << "yes\n";
 		}
 	}

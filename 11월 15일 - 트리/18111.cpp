@@ -1,25 +1,25 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 
 using namespace std;
 
 
 /*
-* ÁıÅÍ : N x M (¿ŞÂÊ À§ ÁÂÇ¥ 0,0)
-* 1) (i,j) ²À´ë±â ºí·ÏÀ» ÀÎº¥Åä¸®·Î ÀÌµ¿ - 2ÃÊ
-* 2) ÀÎº¥Åä¸®ÀÇ ºí·Ï ÇÏ³ª·Î (i,j) ²À´ë±â·Î ÀÌµ¿ - 1ÃÊ
-* °É¸®´Â ÃÖ¼Ò ½Ã°£, ¶¥ ³ôÀÌ °è»ê
-* ÃÖÃÊ ÀÎº¥Åä¸® ºí·Ï °³¼ö : B°³
-* ¶¥ÀÇ ³ôÀÌ : 0~256ºí·Ï
+* ì§‘í„° : N x M (ì™¼ìª½ ìœ„ ì¢Œí‘œ 0,0)
+* 1) (i,j) ê¼­ëŒ€ê¸° ë¸”ë¡ì„ ì¸ë²¤í† ë¦¬ë¡œ ì´ë™ - 2ì´ˆ
+* 2) ì¸ë²¤í† ë¦¬ì˜ ë¸”ë¡ í•˜ë‚˜ë¡œ (i,j) ê¼­ëŒ€ê¸°ë¡œ ì´ë™ - 1ì´ˆ
+* ê±¸ë¦¬ëŠ” ìµœì†Œ ì‹œê°„, ë•… ë†’ì´ ê³„ì‚°
+* ìµœì´ˆ ì¸ë²¤í† ë¦¬ ë¸”ë¡ ê°œìˆ˜ : Bê°œ
+* ë•…ì˜ ë†’ì´ : 0~256ë¸”ë¡
 */
 
 pair<int,int> makeGround(vector<vector<int>>& ground, int n, int m, int b) {
 	int plus, minus, time, min_time = 1e9, max_h = 0;
 
-	// ÅëÀÏ½ÃÅ³ ³ôÀÌ°¡ hÀÎ °æ¿ì ¸ğµÎ ÇØº¸±â
+	// í†µì¼ì‹œí‚¬ ë†’ì´ê°€ hì¸ ê²½ìš° ëª¨ë‘ í•´ë³´ê¸°
 	for (int h = 0; h <= 256; h++) {
 		plus = 0; minus = 0;
-		// »¬ ºí·Ï, °¡Á®¿Ã ºí·Ï °è»ê
+		// ëº„ ë¸”ë¡, ê°€ì ¸ì˜¬ ë¸”ë¡ ê³„ì‚°
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
 				int temp = ground[i][j] - h;
@@ -33,12 +33,12 @@ pair<int,int> makeGround(vector<vector<int>>& ground, int n, int m, int b) {
 			}
 		}
 
-		if (minus + b < plus) {	// Ãß°¡ÇÒ °³¼ö¸¸Å­ ÀÎº¥Åä¸®¿¡ ÀÖ´ÂÁö È®ÀÎ
+		if (minus + b < plus) {	// ì¶”ê°€í•  ê°œìˆ˜ë§Œí¼ ì¸ë²¤í† ë¦¬ì— ìˆëŠ”ì§€ í™•ì¸
 			continue;
 		}
-		// ¼Ò¿ä ½Ã°£ °è»ê
+		// ì†Œìš” ì‹œê°„ ê³„ì‚°
 		time = minus * 2 + plus * 1;
-		// ÃÖ¼Ò ¼Ò¿ä ½Ã°£ °»½Å
+		// ìµœì†Œ ì†Œìš” ì‹œê°„ ê°±ì‹ 
 		if (min_time >= time) {
 			min_time = time;
 			max_h = max(max_h, h);
@@ -50,10 +50,10 @@ pair<int,int> makeGround(vector<vector<int>>& ground, int n, int m, int b) {
 
 int main() {
 	int n, m, b;
-	// ÀÔ·Â
+	// ì…ë ¥
 	cin >> n >> m >> b;
 
-	vector<vector<int>> ground(n, vector<int>(m));	// ¶¥ÀÇ ³ôÀÌ ÀúÀå ÁÂÇ¥
+	vector<vector<int>> ground(n, vector<int>(m));	// ë•…ì˜ ë†’ì´ ì €ì¥ ì¢Œí‘œ
 
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < m; j++) {
